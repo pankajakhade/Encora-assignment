@@ -8,7 +8,7 @@ pipeline{
         }
         stage("Build"){
             steps{
-                sh "tar -cvf webserver_${BUILD_NUMBER}.tgz *"
+                sh "tar --exclude=.git -cvf webserver_${BUILD_NUMBER}.tgz *"
             }
         }
     }

@@ -13,7 +13,7 @@ pipeline{
         }
         stage("Deploy to web server"){
             steps{
-                sh "sudo scp -o StrictHostKeyChecking=no -i /home/ubuntu/encora.pem webserver_${BUILD_NUMBER}.tgz ubuntu@10.0.2.135:/tmp"
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'web', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'webserver_${BUILD_NUMBER}.tgz')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
     }

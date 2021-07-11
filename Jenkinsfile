@@ -8,7 +8,7 @@ pipeline{
         }
         stage("Build"){
             steps{
-                sh "tar --exclude=.git -cvf webserver_${BUILD_NUMBER}.tgz *"
+                sh "rm -rf webserver_*.tgz;tar --exclude=.git -cvf webserver_${BUILD_NUMBER}.tgz *"
             }
         }
         stage("Deploy to web server"){

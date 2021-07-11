@@ -1,10 +1,14 @@
 pipeline{
     stages{
         stage("SCM checkout"){
-            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'e319ae26-ad17-4c97-8b99-16535a8304f6', url: 'https://github.com/pankajakhade/Encora-assignment.git']]])
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'e319ae26-ad17-4c97-8b99-16535a8304f6', url: 'https://github.com/pankajakhade/Encora-assignment.git']]])
+            }
         }
         stage("Build"){
-            sh "tar -cvf webserver_${BUILD_NUMBER}.tgz *"
+            steps{
+                sh "tar -cvf webserver_${BUILD_NUMBER}.tgz *"
+            }
         }
     }
 }

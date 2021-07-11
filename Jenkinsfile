@@ -11,5 +11,10 @@ pipeline{
                 sh "tar --exclude=.git -cvf webserver_${BUILD_NUMBER}.tgz *"
             }
         }
+        stage("Deploy to web server"){
+            steps{
+                scp -i ~/encora.pem webserver_${BUILD_NUMBER}.tgz ubuntu@10.0.2.135:/tmp
+            }
+        }
     }
 }

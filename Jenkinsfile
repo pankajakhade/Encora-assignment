@@ -13,7 +13,7 @@ pipeline{
         }
         stage("Deploy to web server"){
             steps{
-                scp -i $HOME/encora.pem webserver_${BUILD_NUMBER}.tgz ubuntu@10.0.2.135:/tmp
+                sh "scp -i $HOME/encora.pem webserver_${BUILD_NUMBER}.tgz ubuntu@10.0.2.135:/tmp"
             }
         }
     }
